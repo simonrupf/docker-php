@@ -2,6 +2,7 @@ FROM alpine:3.10
 
 ENV S6RELEASE v1.22.1.0
 ENV S6URL     https://github.com/just-containers/s6-overlay/releases/download/
+ENV S6_READ_ONLY_ROOT 1
 
 RUN \
 # Install dependencies
@@ -17,12 +18,9 @@ RUN \
         /etc/nginx/conf.d \
         /etc/nginx/sites-* \
         /etc/php7/php-fpm.d/www.conf \
-        /var/lib/nginx/logs \
-        /var/log/nginx \
     && \
 # Ensure nginx logs, even if the config has errors, are written to stderr
-    mkdir -p /var/lib/nginx/logs && \
-    ln -s /dev/stderr /var/lib/nginx/logs/error.log
+    ln -s /dev/stderr /var/log/nginx/error.log
 
 # Install s6 overlay for service management
 RUN apk add --no-cache gnupg curl && \
