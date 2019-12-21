@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 ENV S6RELEASE v1.22.1.0
 ENV S6URL     https://github.com/just-containers/s6-overlay/releases/download/
@@ -23,16 +23,16 @@ RUN \
     ln -s /dev/stderr /var/log/nginx/error.log
 
 # Install s6 overlay for service management
-RUN apk add --no-cache gnupg curl && \
+RUN apk add --no-cache gnupg && \
     export GNUPGHOME="$(mktemp -d)" && \
     gpg2 --list-public-keys || /bin/true && \
-    curl -s https://keybase.io/justcontainers/key.asc | gpg2 --import - && \
+    wget -qO - https://keybase.io/justcontainers/key.asc | gpg2 --import - && \
     cd /tmp && \
-    curl -Ls ${S6URL}${S6RELEASE}/s6-overlay-amd64.tar.gz.sig > s6-overlay-amd64.tar.gz.sig && \
-    curl -Ls ${S6URL}${S6RELEASE}/s6-overlay-amd64.tar.gz > s6-overlay-amd64.tar.gz && \
+    wget -qO - ${S6URL}${S6RELEASE}/s6-overlay-amd64.tar.gz.sig > s6-overlay-amd64.tar.gz.sig && \
+    wget -qO - ${S6URL}${S6RELEASE}/s6-overlay-amd64.tar.gz > s6-overlay-amd64.tar.gz && \
     gpg2 --verify s6-overlay-amd64.tar.gz.sig && \
     tar xzf s6-overlay-amd64.tar.gz -C / && \
-    apk del gnupg curl && \
+    apk del gnupg && \
     rm -rf "${GNUPGHOME}" /tmp/*
 
 COPY etc /etc
