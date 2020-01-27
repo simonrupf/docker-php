@@ -20,7 +20,7 @@ exec: ## Execute a shell in the running container for inspection, requires a run
 	docker exec -ti $(NAME) $(CMD)
 
 sh: ## Run a shell instead of the service for inspection, deletes the container when you leave it.
-	docker run -ti --rm --init --name $(NAME) -p=$(PORT):$(PORT) -e S6_READ_ONLY_ROOT=1 --read-only $(IMAGE) $(CMD)
+	docker run -ti --rm --init --name $(NAME) -p=$(PORT):$(PORT) -e S6_READ_ONLY_ROOT=1 --read-only --entrypoint=$(CMD) $(IMAGE)
 
 clean: ## Stops and removes the running container.
 	docker stop $(NAME)

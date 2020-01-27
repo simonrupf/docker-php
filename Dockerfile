@@ -46,7 +46,7 @@ RUN mkdir /etc/services.d/nginx/supervise /etc/services.d/php-fpm7/supervise && 
 
 USER nginx:www-data
 EXPOSE 8080/tcp
-VOLUME /run /tmp /var/tmp/nginx
+VOLUME /run /tmp /var/lib/nginx/tmp
 WORKDIR /var/www
 
 ENTRYPOINT ["/init"]
