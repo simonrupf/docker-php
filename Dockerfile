@@ -6,6 +6,7 @@ ENV S6_READ_ONLY_ROOT 1
 
 RUN \
 # Install dependencies
+    apk upgrade --no-cache && \
     apk add --no-cache \
         nginx \
         php7-fpm \
