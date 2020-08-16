@@ -1,6 +1,6 @@
-FROM alpine:3.11
+FROM alpine:3.12
 
-ENV S6RELEASE v1.22.1.0
+ENV S6RELEASE v2.0.0.1
 ENV S6URL     https://github.com/just-containers/s6-overlay/releases/download/
 ENV S6_READ_ONLY_ROOT 1
 
