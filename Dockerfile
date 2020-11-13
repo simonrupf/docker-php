@@ -40,8 +40,8 @@ COPY etc /etc
 
 # Support running s6 under a non-root user
 RUN mkdir /etc/services.d/nginx/supervise /etc/services.d/php-fpm7/supervise && \
-    mkfifo /etc/services.d/nginx/supervise/control && \
-    mkfifo /etc/services.d/php-fpm7/supervise/control && \
+    mkfifo /etc/services.d/nginx/supervise/control \
+        /etc/services.d/php-fpm7/supervise/control && \
     chown -R nginx:www-data /etc/services.d /etc/s6 /run
 
 # user nginx, group www-data
