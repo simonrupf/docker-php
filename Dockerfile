@@ -1,6 +1,6 @@
-FROM alpine:3.12
+FROM alpine:3.12.1
 
-ENV S6RELEASE v2.0.0.1
+ENV S6RELEASE v2.1.0.2
 ENV S6URL     https://github.com/just-containers/s6-overlay/releases/download/
 ENV S6_READ_ONLY_ROOT 1
 
@@ -42,10 +42,10 @@ COPY etc /etc
 RUN mkdir /etc/services.d/nginx/supervise /etc/services.d/php-fpm7/supervise && \
     mkfifo /etc/services.d/nginx/supervise/control && \
     mkfifo /etc/services.d/php-fpm7/supervise/control && \
-    mkfifo /etc/s6/services/s6-fdholderd/supervise/control && \
     chown -R nginx:www-data /etc/services.d /etc/s6 /run
 
-USER nginx:www-data
+# user nginx, group www-data
+USER 100:82
 EXPOSE 8080/tcp
 VOLUME /run /tmp /var/lib/nginx/tmp
 WORKDIR /var/www
