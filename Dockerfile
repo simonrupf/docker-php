@@ -6,8 +6,8 @@ RUN \
 # Install dependencies
     apk add --upgrade --no-cache \
         nginx \
-        php7-fpm \
-        php7-opcache \
+        php8-fpm \
+        php8-opcache \
         s6-overlay \
         tzdata \
     && \
@@ -15,7 +15,7 @@ RUN \
     rm -rf \
         /etc/nginx.conf \
         /etc/nginx/http.d/*.conf \
-        /etc/php7/php-fpm.d/www.conf \
+        /etc/php8/php-fpm.d/www.conf \
         /var/www/localhost \
     && \
 # Ensure nginx logs, even if the config has errors, are written to stderr
@@ -25,9 +25,9 @@ COPY etc /etc
 
 # Support running s6 under a non-root user
 RUN mkdir /etc/s6/services/nginx/supervise \
-        /etc/s6/services/php-fpm7/supervise && \
+        /etc/s6/services/php-fpm8/supervise && \
     mkfifo /etc/s6/services/nginx/supervise/control \
-        /etc/s6/services/php-fpm7/supervise/control && \
+        /etc/s6/services/php-fpm8/supervise/control && \
     chown -R nginx:www-data /etc/s6 /run
 
 # user nginx, group www-data

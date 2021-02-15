@@ -1,5 +1,9 @@
 # PHP change log
 
+## 0.2.0
+
+update to php 8.0.2
+
 ## 0.1.8
 
 update to Alpine 3.13 / php 7.4.15 / nginx 1.18.0 / s6 2.1.0.0
