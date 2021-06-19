@@ -1,12 +1,16 @@
 # PHP change log
 
+## 0.2.1
+
+update to Alpine 3.14 / php 8.0.7 / nginx 1.20.1 / s6 2.10.0.3
+
 ## 0.2.0
 
 update to php 8.0.2
 
 ## 0.1.8
 
-update to Alpine 3.13 / php 7.4.15 / nginx 1.18.0 / s6 2.1.0.0
+update to Alpine 3.13 / php 7.4.15 / nginx 1.18.0 / s6 2.10.0.0
 
 ## 0.1.7
 adding multi-arch image support via github action and buildx
