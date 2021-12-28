@@ -1,6 +1,7 @@
-FROM alpine:3.14
+FROM alpine:3.15
 
-ENV S6_READ_ONLY_ROOT 1
+ARG UID=100
+ARG GID=82
 
 RUN \
 # Install dependencies
@@ -8,7 +9,7 @@ RUN \
         nginx \
         php8-fpm \
         php8-opcache \
-        s6-overlay \
+        s6 \
         tzdata \
     && \
 # Remove (some of the) default nginx config
@@ -28,12 +29,12 @@ RUN mkdir /etc/s6/services/nginx/supervise \
         /etc/s6/services/php-fpm8/supervise && \
     mkfifo /etc/s6/services/nginx/supervise/control \
         /etc/s6/services/php-fpm8/supervise/control && \
-    chown -R nginx:www-data /etc/s6 /run
+    chown -R ${UID}:${GID} /etc/s6 /run
 
 # user nginx, group www-data
-USER 100:82
+USER ${UID}:${GID}
 EXPOSE 8080/tcp
 VOLUME /run /tmp /var/lib/nginx/tmp
 WORKDIR /var/www
 
-ENTRYPOINT ["/init"]
+ENTRYPOINT ["/etc/init.d/rc.local"]
