@@ -1,5 +1,9 @@
 # PHP change log
 
+## 0.3.1
+
+update to Alpine 3.16 / php 8.1.6 / nginx 1.22.0 / s6 2.11.1.0
+
 ## 0.3.0
 
 update to Alpine 3.15 / php 8.0.14 / nginx 1.20.2 / s6 2.11.0.0
