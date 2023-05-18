@@ -3,6 +3,10 @@ FROM alpine:3.18
 ARG UID=100
 ARG GID=82
 
+LABEL org.opencontainers.image.authors="Simon Rupf <simon@rupf.net>" \
+      org.opencontainers.image.source=https://github.com/simonrupf/docker-php \
+      org.opencontainers.image.version="${VERSION}"
+
 RUN \
 # Install dependencies
     apk add --upgrade --no-cache \
