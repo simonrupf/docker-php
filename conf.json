@@ -10,7 +10,7 @@
     "routes": [
         {
             "match": {
-                "uri": "~\\.(css|gif|ico|jpe?g|js(on)?|png|svg|swf|ttf|txt|wasm|woff2?|x?html?|xml)$"
+                "uri": "~[^/]+$"
             },
             "action": {
                 "share": "/var/www/public${uri}"
