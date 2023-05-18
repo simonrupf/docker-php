@@ -1,6 +1,6 @@
 # PHP
 
-Stack of nginx web and PHP fpm servers for running PHP web applications.
+Nginx Unit application server for running PHP web applications.
 
 ## Environment variables
 

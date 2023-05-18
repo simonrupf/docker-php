@@ -6,35 +6,24 @@ ARG GID=82
 RUN \
 # Install dependencies
     apk add --upgrade --no-cache \
-        nginx \
-        php82-fpm \
+        unit-php82 \
         php82-opcache \
-        s6 \
         tzdata \
     && \
-# Remove (some of the) default nginx config
-    rm -rf \
-        /etc/nginx.conf \
-        /etc/nginx/http.d/*.conf \
-        /etc/php82/php-fpm.d/www.conf \
-        /var/www/localhost \
-    && \
-# Ensure nginx logs, even if the config has errors, are written to stderr
-    ln -s /dev/stderr /var/log/nginx/error.log
+# Create working directory
+    mkdir -p /var/www/public && \
+    echo "<?php phpinfo();" > /var/www/public/index.php && \
+# Support running unit under a non-root user
+    chown -R ${UID}:${GID} /run /var/www /var/lib/unit
 
-COPY etc /etc
-
-# Support running s6 under a non-root user
-RUN mkdir /etc/s6/services/nginx/supervise \
-        /etc/s6/services/php-fpm82/supervise && \
-    mkfifo /etc/s6/services/nginx/supervise/control \
-        /etc/s6/services/php-fpm82/supervise/control && \
-    chown -R ${UID}:${GID} /etc/s6 /run
+COPY --chown=${UID}:${GID} conf.json /var/lib/unit/
 
 # user nginx, group www-data
 USER ${UID}:${GID}
 EXPOSE 8080/tcp
-VOLUME /run /tmp /var/lib/nginx/tmp
+VOLUME /run /tmp /var/lib/unit
 WORKDIR /var/www
 
-ENTRYPOINT ["/etc/init.d/rc.local"]
+HEALTHCHECK CMD ["wget", "-qO/dev/null", "http://localhost:8080"]
+ENTRYPOINT ["/usr/sbin/unitd"]
+CMD ["--no-daemon", "--log", "/dev/stdout", "--tmpdir", "/tmp"]
