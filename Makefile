@@ -9,7 +9,7 @@ build: ## Build the container image (default).
 	docker build -t $(IMAGE) .
 
 run: ## Run a container from the image.
-	docker run -d --init --name $(NAME) -p=$(PORT):$(PORT) -e S6_READ_ONLY_ROOT=1 --read-only --restart=always $(IMAGE)
+	docker run -d --init --name $(NAME) -p=$(PORT):$(PORT) --read-only --restart=always $(IMAGE)
 
 test: ## Launch tests to verify that the service works as expected, requires a running container.
 	@sleep 1
@@ -20,7 +20,7 @@ exec: ## Execute a shell in the running container for inspection, requires a run
 	docker exec -ti $(NAME) $(CMD)
 
 sh: ## Run a shell instead of the service for inspection, deletes the container when you leave it.
-	docker run -ti --rm --init --name $(NAME) -p=$(PORT):$(PORT) -e S6_READ_ONLY_ROOT=1 --read-only --entrypoint=$(CMD) $(IMAGE)
+	docker run -ti --rm --init --name $(NAME) -p=$(PORT):$(PORT) --read-only --entrypoint=$(CMD) $(IMAGE)
 
 clean: ## Stops and removes the running container.
 	docker stop $(NAME)
