@@ -10,10 +10,10 @@
     "routes": [
         {
             "match": {
-                "uri": "~\\.(css|gif|ico|jpe?g|js(on)?|png|svg|ttf|txt|wasm|woff2?|x?html?|xml)$"
+                "uri": "~\\.(css|gif|ico|jpe?g|js(on)?|png|svg|swf|ttf|txt|wasm|woff2?|x?html?|xml)$"
             },
             "action": {
-                "share": "/var/www${uri}"
+                "share": "/var/www/public${uri}"
             }
         },
         {
@@ -25,8 +25,7 @@
     "applications": {
         "php": {
             "type": "php",
-            "root": "/var/www/",
-            "script": "public/index.php",
+            "root": "/var/www/public/",
             "options": {
                 "file": "/etc/php82/php.ini",
                 "admin": {
@@ -54,7 +53,8 @@
         "http": {
             "static": {
                 "mime_types": {
-                    "application/wasm": [".wasm"]
+                    "application/wasm": [".wasm"],
+                    "application/x-shockwave-flash": [".swf"]
                 }
             }
         }
