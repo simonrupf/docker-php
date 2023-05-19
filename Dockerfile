@@ -16,7 +16,6 @@ RUN \
     && \
 # Create working directory
     mkdir -p /var/www/public && \
-    echo "<?php phpinfo();" > /var/www/public/index.php && \
 # Support running unit under a non-root user
     chown -R ${UID}:${GID} /run /var/www /var/lib/unit
 
