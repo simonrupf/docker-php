@@ -1,8 +1,13 @@
 # PHP change log
 
+## 0.5.1
+
+update to Alpine 3.19 / php 8.2.13
+
 ## 0.5.0
 
-switching from php-fpm & nginx webserver to nginx unit application server, removing s6
+switching from php-fpm & nginx webserver to nginx unit 1.31.1 application
+server, removing s6
 
 ## 0.4.1
 

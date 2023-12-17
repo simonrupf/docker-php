@@ -12,7 +12,7 @@ the timezone. This is useful to ensure the logs show the correct local time.
 
 ## Volumes
 
-It is recommended to use a tmpfs for `/run` and `/tmp`. `/var/tmp/nginx` can
+It is recommended to use a tmpfs for `/run` and `/tmp`. `/var/lib/unit` can
 contain larger files during caching or uploads, so best leave this as a regular
 volume. Attach your PHP application into `/var/www/public`.
 
@@ -23,8 +23,8 @@ images, fonts) and the index.php entrypoint from PHP libraries and (uploaded)
 files that should not be directly accessible for security reasons.
 
 - `/run`: PID files and sockets
-- `/tmp`: temporary data of PHP (i.e. sessions) and supervisord
-- `/var/tmp/nginx`: temporary data of nginx (i.e. uploads, large responses)
+- `/tmp`: temporary data of PHP (i.e. sessions)
+- `/var/lib/unit`: temporary data of nginx unit (i.e. uploads, large responses)
 - `/var/www/public` or `/var/www`: contents of your PHP application - owner 100,
   group 82, mode 0750
 
