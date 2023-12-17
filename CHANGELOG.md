@@ -1,5 +1,9 @@
 # PHP change log
 
+## 0.5.2
+
+update to php 8.3.0
+
 ## 0.5.1
 
 update to Alpine 3.19 / php 8.2.13
