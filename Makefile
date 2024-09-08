@@ -6,7 +6,7 @@ PORT = 8080
 CMD = /bin/ash
 
 build: ## Build the container image (default).
-	docker build -t $(IMAGE) .
+	docker build -t $(IMAGE) --load .
 
 run: ## Run a container from the image.
 	docker run -d --init --name $(NAME) -p=$(PORT):$(PORT) --read-only --restart=always $(IMAGE)

@@ -1,5 +1,6 @@
 FROM alpine:3.20
 
+# user nginx, group www-data
 ARG UID=100
 ARG GID=82
 
@@ -21,7 +22,6 @@ RUN \
 
 COPY --chown=${UID}:${GID} conf.json /var/lib/unit/
 
-# user nginx, group www-data
 USER ${UID}:${GID}
 EXPOSE 8080/tcp
 VOLUME /run /tmp /var/lib/unit

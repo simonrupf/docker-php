@@ -27,9 +27,8 @@
             "type": "php",
             "root": "/var/www/public/",
             "options": {
-                "file": "/etc/php82/php.ini",
+                "file": "/etc/php83/php.ini",
                 "admin": {
-                    "assert.active": "Off",
                     "display_errors": "Off",
                     "log_errors": "On",
                     "short_open_tag": "Off",
@@ -39,7 +38,8 @@
                     "opcache.max_accelerated_files": "20000",
                     "opcache.memory_consumption": "128",
                     "opcache.validate_timestamps": "Off",
-                    "realpath_cache_size": "4096K"
+                    "realpath_cache_size": "4096K",
+                    "zend.assertions": "-1"
                 }
             },
             "processes": {
