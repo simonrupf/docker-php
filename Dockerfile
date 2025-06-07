@@ -11,8 +11,8 @@ LABEL org.opencontainers.image.authors="Simon Rupf <simon@rupf.net>" \
 RUN \
 # Install dependencies
     apk add --upgrade --no-cache \
-        unit-php83 \
-        php83-opcache \
+        unit-php84 \
+        php84-opcache \
         tzdata \
     && \
 # Create working directory
