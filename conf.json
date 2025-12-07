@@ -27,7 +27,7 @@
             "type": "php",
             "root": "/var/www/public/",
             "options": {
-                "file": "/etc/php84/php.ini",
+                "file": "/etc/php85/php.ini",
                 "admin": {
                     "display_errors": "Off",
                     "log_errors": "On",
